@@ -3,25 +3,13 @@ import { useContext } from 'react';
 import { searchContext } from '../App';
 import { searchPhotos } from '../service/API'
 import { Link } from 'react-router-dom';
-
+import { myDebounce } from '../utils';
 
 
 
 const Navbar = () => {
 
     const { setPhotos } = useContext(searchContext);
-
-
-    const myDebounce = (fn, delay) => {
-        let timer;
-        return function (...args) {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                fn(...args);
-            }, delay);
-        };
-    };
-
 
     const searchPhotoF = async (query) => {
         const res = await searchPhotos(query);
@@ -33,7 +21,7 @@ const Navbar = () => {
     const apiFn = myDebounce(searchPhotoF, 800);
 
     return (
-        <div className="flex items-center w-screen p-3 fixed top-0 left-0  bg-[#fbfbfb] ">
+        <div className="flex z-50 items-center w-screen p-3 fixed top-0 left-0  bg-[#fbfbfb] ">
 
             <Link to='/'>
                 <h1 className="text-2xl Montserrat text-[#2c2c2c] ">Image Gallery</h1>
