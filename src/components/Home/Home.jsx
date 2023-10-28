@@ -4,9 +4,9 @@ import { FcLike } from 'react-icons/fc';
 import { getPhotos, searchPhotos } from '../../service/API';
 import Modal from './Modal';
 import { searchContext } from '../../App';
+import { myDebounce } from '../../utils';
 
 const Home = () => {
-
 
     const { photos, setPhotos } = useContext(searchContext);
     const [photo, setPhoto] = useState({});
@@ -18,17 +18,6 @@ const Home = () => {
 
     const closeModal = () => {
         setModalOpen(false);
-    };
-
-
-    const myDebounce = (fn, delay) => {
-        let timer;
-        return function (...args) {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                fn(...args);
-            }, delay);
-        };
     };
 
 
